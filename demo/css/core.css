@@ -1,0 +1,76 @@
+.text_medium {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.text_small {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.text_paragraph {
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.text_bold {
+	font-weight: 600;
+}
+
+.inline {
+	float: left;
+}
+
+
+.clear {
+	clear: both;
+}
+
+.blurred, .blurred div, .blurred span, .blurred a {
+	color: transparent !important; 
+	text-shadow: 0 0 7px rgba(0,0,0,1) !important;
+	opacity: 0.9 !important;
+}
+
+.blurred img, .blurred .ui-icon {
+	-webkit-filter: blur(3px) !important;
+}
+
+#page_jobs .job_status {
+	margin-left: 10px;
+	height: 14px;
+}
+
+#page_job .job_icon img {
+	height: 22px;
+}
+
+#page_job .job_status {
+	margin-left: 10px;
+	height: 14px;
+}
+
+table.calendar td {
+	border: 1px solid gray;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+table.calendar {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.calendar td.selected {
+	background-color: #396b9e;
+	border: 0px;
+}
+
+table.calendar td.header {
+	border: 0px;
+}
+

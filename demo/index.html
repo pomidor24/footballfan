@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+
+            window.onerror = function(message, url, lineNumber) {
+                console.log("Error: "+message+" in "+url+" at line "+lineNumber);
+            }
+        </script>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="vendors/jquery.mobile-1.3.1/jquery.mobile-1.3.1.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/core.css" />
+        <title>The Supporter </title>
+
+
+        <script src="vendors/jquery-2.0.0.min.js"></script>
+
+        <script type="text/javascript">
+            var App = {}
+
+            $(document).bind('mobileinit', function() {
+                $(document).ready(function() {
+                    App.Nav.init()
+                    App.Engine.startNewGame()
+                })
+
+            })
+        </script>
+        <script src="vendors/moment.min.js"></script>
+        <script src="vendors/jquery.mobile-1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <script src="vendors/jqm.page.params.js"></script>
+        <script type="text/javascript">
+            $(document).bind("pagebeforechange", function( event, data ) {
+                $.mobile.pageData = (data && data.options && data.options.pageData)
+                    ? data.options.pageData
+                    : {};
+            });
+        </script>
+        <script type="text/javascript" src="js/lib/Addons.js"></script>
+        <script type="text/javascript" src="js/lib/EventEmitter.js"></script>
+        <script type="text/javascript" src="js/lib/TimeEngine.js"></script>
+        <script type="text/javascript" src="js/lib/Utils.js"></script>
+        <script type="text/javascript" src="js/Cfg.js"></script>
+        <script type="text/javascript" src="js/Managers.js"></script>
+        <script type="text/javascript" src="js/Workflow.js"></script>
+        <script type="text/javascript" src="js/Views.js"></script>
+        <script type="text/javascript" src="js/Engine.js"></script>
+        <script type="text/javascript" src="js/Navigation.js"></script>
+
+    </head>
+    <body>
+        <div id="event"></div>
+        <div id="start_0" data-role="dialog" data-theme="a" data-content-theme="a">
+            <div data-role="content"><h1>1 Ready?</h1></div>
+        </div>
+        <div id="start_1" data-role="dialog" data-theme="a" data-content-theme="a">
+            <div data-role="content"><h1>2 Steady?</h1></div>
+        </div>
+        <div id="start_2" data-role="dialog" data-theme="a" data-content-theme="a">
+            <div data-role="content"><h1>3 Gooooo!</h1></div>
+        </div>
+
+        <!-- main page -->
+
+        <div id="game" data-role="page" data-theme="a" data-content-theme="a">
+            <div data-role="header">
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">
+                       Respect <span id="respect"></span>
+                    </div>
+                    <div class="ui-block-b">
+                       Loyalty <span id="loyalty"></span>%
+                    </div>
+                    <div class="ui-block-c">
+                        <span id="money"></span>
+                        <span id="money_sign"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <input type="button" value="Match"/>
+                        <input data-app-link="page_jobs" type="button" value="Job"  data-app-time="stop" />
+                        <input type="button" value="Fight"/>
+                        <input id="go_to_pub" data-app-link="page_pub" data-app-time="stop" type="button" value="Pub"/>
+                        <input type="button" value="Museum"/>
+                    </div>
+                    <div class="ui-block-b">
+                        <div>Job: <span id="player_job"></span></div>
+                        <div>Hours experience: <span id="player_exp_hours"></span></div>
+                        <div>Days experience: <span id="player_exp_days"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-role="footer">
+                <div id="curr_date"></div>
+            </div>
+        </div>
+
+        <!-- jobs list -->
+
+        <div data-role="page" id="page_jobs">
+            <div data-role="header">
+                <a data-role="button" data-icon="back" data-rel="back">Back</a>
+                <h2>Jobs available</h2>
+            </div>
+            <div data-role="content">
+                <ul id="job_list" data-role="listview">
+                </ul>
+            </div>
+        </div>
+
+        <!-- job -->
+
+        <div data-role="dialog" id="page_job" data-close-btn="none">
+            <div data-role="header">
+                <a data-role="button" data-icon="back" data-rel="back">Back</a>
+                <h1>Job description</h1>
+            </div>
+            <div data-role="content">
+
+                <div class="ui-grid-b">
+                    <div class="ui-block-a" style="width: 15%">
+                        <div id="job_image" class="job_icon" style="margin-right: 15px; margin-bottom: 5px;"></div>
+                        <span id="job_rate" class="text_medium"></span><br/>
+                        <span id="job_per_week" class="text_medium"></span>
+                   </div>
+                    <div class="ui-block-b" style="width: 55%">
+                        <h4 id="job_title" style="margin-top: 0px; margin-bottom: 10px;"></h4>
+                        <p id="job_description" class="text_paragraph"></p>
+                    </div>
+                    <div class="ui-block-c" style="width: 30%">
+                        <input type="button"  id="job_apply_release" data-app-id="" data-icon="arrow-r" data-inline="true" style="margin-left: 10px"/><br/>
+                        <span id="job_app_time" class="text_small" style="margin-left: 15px"></span>
+                    </div>
+
+                </div>
+                <br/>
+
+                <ul id="job_details" data-role="listview" data-divider-theme="d">
+                    <li id="header_requirements" data-role="list-divider">
+                        Requirements
+                    </li>
+                    <li data-role="list-divider">
+                        Working hours
+                    </li>
+                    <li>
+                        <div id="job_calendar">
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="page" id="page_pub" data-theme="a" data-content-theme="a">
+            <div data-role="header">
+                <a data-role="button" data-icon="back" data-rel="back">Back</a>
+                <h1>Pub</h1>
+            </div>
+            <div data-role="content">
+                 <a id="pub_drink" data-role="button">Drink</a>
+            </div>
+        </div>
+
+
+        <!-- game lost -->
+
+        <div data-role="dialog" id="game_lost_page" data-close-btn="none">
+            <div data-role="header">
+                <h2>Game finished</h2>
+            </div>
+            <div data-role="content">
+                <h1>Game lost :(</h1>
+                <p id="lost_reason"></p>
+                <a data-role="button" data-theme="b" data-app-link="start_from_scrach">Start from scratch</a>
+                <a data-role="button">Exit</a>
+            </div>
+        </div>
+
+    </body>
+</html>

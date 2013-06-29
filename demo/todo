@@ -1,0 +1,28 @@
+
+3) sdelat' fon sinim vybrannoj raboty +
+1) dobavit' ikonki V i kliuchit v dzhobe +
+2) sdelat' knopku 'release job' chiornuju+
+5) PubManager+
+6) GameManager+
+7) event based and move all print v behavior +
+10) vse eventy absoliutno v Behavior (vkliuchaja time engine) +
+11) vse printy v behavior +
+3) kopirovat' currdate, prevdate etc+
+10) id stranicy+
+4) sdelat' narabotannyje chasy i narabotannyje dni+
+0) event emitter+
+4) v pabe ostanavlivat' vremja+
+
+5) sdelat' prostoj pub dobavit' -- prosto dobavliaet loyalty i otnimaet 5 baksov
+10) vyvesti job, work hours, work days
+12) dengi loyalty i td vyvodit' vsegda sverhu
+
+
+7) kogda otkrylas' novaja rabota, sdelat' notification
+11) sdelat' apply i sdelat' notification
+
+6) sdelat' application time i notification
+4) notification kogda otkrylas' novaja rabota
+
+
+5) sdelat' glavnoje meniu, kogda zahodish v igru
